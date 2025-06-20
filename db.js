@@ -1,7 +1,8 @@
 const mongoose = require('mongoose');
 
 // mongodb connection url
-const mongoURL =  'mongodb://localhost:27017/mydatabase';
+// const mongoURL =  'mongodb://localhost:27017/mydatabase';
+const mongoURL = 'mongodb+srv://isarassharma68:pbOBgEgCmJaTbQMQ@cluster0.xvdsbnm.mongodb.net/';
 // setup mongodb connectio
 mongoose.connect(mongoURL,{
     useNewUrlParser:true,
