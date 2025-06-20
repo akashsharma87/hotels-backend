@@ -6,10 +6,11 @@ const express = require("express");
 
 const personRoutes = require('./Routes/personRoutes')
 
-
+require('dotenv').config();
 
 const app = express();
 app.use(express.json());
+const PORT = process.env.PORT || 3000;
 app.use('/person',personRoutes)
 
 app.get('/', (req, res) => {
@@ -50,7 +51,7 @@ app.get('/menu', async (req, res) => {
 
 
 
-app.listen(8000, () => console.log("Server Started!"))
+app.listen(PORT, () => console.log("Server Started!"))
 
 
 // const myServer = http.createServer(app);
