@@ -1,22 +1,41 @@
 const express = require('express');
 const router = express.Router();
 const person = require('../person');
+const passport = require('../auth');
 
-router.post('/',async(req,res) => {
+
+router.post('/login', passport.authenticate('local', { session: false }), (req, res) => {
+    res.status(200).json({ message: 'Login successful!', user: req.user });
+});
+
+router.post('/register', async (req, res) => {
     try {
         const data = req.body;
         const newPerson = new person(data);
-
         const response = await newPerson.save();
-        console.log('data saved');
         res.status(200).json(response);
-
-
     } catch (error) {
-        console.log(err);
-        res.status(500).json({error:'Internal server Error'});
+        console.log(error);
+        res.status(500).json({ error: 'Internal server error' });
     }
-})
+});
+
+
+// router.post('/',async(req,res) => {
+//     try {
+//         const data = req.body;
+//         const newPerson = new person(data);
+
+//         const response = await newPerson.save();
+//         console.log('data saved');
+//         res.status(200).json(response);
+
+
+//     } catch (error) {
+//         console.log(error);
+//         res.status(500).json({error:'Internal server Error'});
+//     }
+// })
 
 router.get('/',async(req,res)=>{
     try{
